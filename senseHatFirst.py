@@ -6,15 +6,13 @@ import time
 
 
 def getMatrix():
-    while True:
-        x = randint(1,255)
-        y = randint(1,255)
-        z = randint(1,255)
-        c = [x,y,z]
-        return c
+    x = randint(1,255)
+    y = randint(1,255)
+    z = randint(1,255)
+    c = [x,y,z]
+    return c
 
 def getColor():
-    
     while True:
         semaphore.acquire()
         b = [0,0,0]
