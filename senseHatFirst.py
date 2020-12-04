@@ -28,8 +28,16 @@ def getColor():
         sense.set_pixels(smiley)
         semaphore.release()
         time.sleep(3)
-        
-    
+
+
+def blink():
+    while True:
+        sense.clear()
+        semaphore.acquire()
+        c = getMatrix()
+        sense.set_pixel(randint(0,7),randint(0,7),c)
+        semaphore.release()
+        time.sleep(1)
 
 def myMainLogic():  
     num = 0
@@ -60,7 +68,6 @@ def myMainLogic():
                 isRunning = False
                 t1.terminate()
                 semaphore.release()
-                
             elif(num == 1):
                 num = 0
                 semaphore.release()
@@ -74,7 +81,7 @@ sense.clear()
 sense.set_rotation(180)
 sense.low_light = True
 semaphore = BoundedSemaphore(value=1)
-t1 = Process(name="getColor",target=getColor)
+t1 = Process(name="blink",target=blink)
 t2 = Process(name="main",target=myMainLogic)
 #t1.daemon = True
 #t2.daemon = True
